@@ -185,7 +185,7 @@ struct Light
 Sphere spheres[] = Sphere[](
 	// Scene 1
 	Sphere(vec3(0, 25, -10), 10, REFLECTIVE | SPECULAR, ObjectMatProperties(vec3(0), vec3(0.95), vec3(0.2, 0.9, 0.95))),
-//	Sphere(vec3(15, 25, 56), 2, REFRACTIVE | SPECULAR, ObjectMatProperties(vec3(0), vec3(0), vec3(1))),
+	Sphere(vec3(15, 25, 56), 2, REFRACTIVE | SPECULAR, ObjectMatProperties(vec3(0), vec3(0), vec3(1))),
 
 	// Scene 2
 	Sphere(vec3(0, 25, -10), 10, REFLECTIVE | SPECULAR, ObjectMatProperties(vec3(0.0), vec3(0.95), vec3(0.2, 0.9, 0.95))),
@@ -216,8 +216,8 @@ Sphere spheres[] = Sphere[](
 
 Box boxes[] = Box[](
 	// Scene 1
-//	Box(vec3(23, 9, 13), vec3(37, 23, 27), REFRACTIVE, ObjectMatProperties(vec3(0), vec3(0.95), vec3(0.9, 0.95, 0.94))),
-//	Box(vec3(-70, 0, -70), vec3(120, 110, 120),  DIFFUSE, ObjectMatProperties(vec3(0.8), vec3(0.6), vec3(0.8))),
+	Box(vec3(23, 9, 13), vec3(37, 23, 27), REFRACTIVE, ObjectMatProperties(vec3(0), vec3(0.95), vec3(0.9, 0.95, 0.94))),
+	Box(vec3(-70, 0, -70), vec3(120, 110, 120),  DIFFUSE, ObjectMatProperties(vec3(0.8), vec3(0.6), vec3(0.8))),
 
 	// Scene 2
 	Box(vec3(43, 12, 13), vec3(57, 27, 27), REFLECTIVE, ObjectMatProperties(vec3(0), vec3(0.55), vec3(0.7, 0.75, 0.34))),
@@ -232,7 +232,7 @@ Box boxes[] = Box[](
 
 Cylinder cylinders[] = Cylinder[](
 	// Scene 1
-//	Cylinder(vec3(10, 10, 15), 6, 7, DIFFUSE, ObjectMatProperties(vec3(0.2, 0.8, 0.2), vec3(0), vec3(0.6))),
+	Cylinder(vec3(10, 10, 15), 6, 7, DIFFUSE, ObjectMatProperties(vec3(0.2, 0.8, 0.2), vec3(0), vec3(0.6))),
 
 	// Scene 2
 	Cylinder(vec3(50, 30, -25), 2, 12, REFLECTIVE | SPECULAR, ObjectMatProperties(vec3(0.5, 0.5, 0.2), vec3(1), vec3(0.6))),
@@ -247,7 +247,7 @@ Cylinder cylinders[] = Cylinder[](
 
 Cone cones[] = Cone[](
 	// Scene 1
-//	Cone(vec3(100, 20, 15), 16, 16, DIFFUSE | SPECULAR, ObjectMatProperties(vec3(0.2, 0.2, 0.9), vec3(0), vec3(0.6))),
+	Cone(vec3(100, 20, 15), 16, 16, DIFFUSE | SPECULAR, ObjectMatProperties(vec3(0.2, 0.2, 0.9), vec3(0), vec3(0.6))),
 
 	// Scene 2
 	Cone(vec3(108, 20, 15), 16, 16, DIFFUSE, ObjectMatProperties(vec3(0.2, 0.7, 0.3), vec3(0), vec3(0.6))),
