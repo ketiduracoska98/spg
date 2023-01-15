@@ -24,17 +24,9 @@ private:
     void OnMouseBtnRelease(int mouseX, int mouseY, int button, int mods) override;
     void OnMouseScroll(int mouseX, int mouseY, int offsetX, int offsetY) override;
     void OnWindowResize(int width, int height) override;
-	void DrawOnGPU();
+	void RenderOnGPU();
 	
 	
 private:  
-	int scene = 1;	
-	float rotationValue = 0;
-	float rotationDirection = 1;
-	float translationValue = 0;
-	float translationDirection = 1;
-	float scalingValue = 1;
-	float scalingDirection = 1;
-	float animationSpeed = 5;
-	float currTime = 0;
+	int scene = 1;
 };

@@ -46,21 +46,8 @@ void Proiect::FrameStart()
 void Proiect::Update(float deltaTimeSeconds)
 
 {
-
 	ClearScreen();
-	rotationValue += 4 * rotationDirection * animationSpeed * deltaTimeSeconds;
-	scalingValue += 0.05 * scalingDirection * animationSpeed * deltaTimeSeconds;
-	translationValue += translationDirection * animationSpeed * deltaTimeSeconds;
-
-	if (rotationValue > 360) rotationDirection = -1;
-	if (scalingValue > 2) scalingDirection = -1;
-	if (translationValue > 2) translationDirection = -1;
-
-	if (rotationValue < -360) rotationDirection = +1;
-	if (scalingValue < 0.1) scalingDirection = +1;
-	if (translationValue < -2) translationDirection = +1;
-	DrawOnGPU();
-	
+	RenderOnGPU();
 }
 
 
@@ -132,7 +119,7 @@ void Proiect::OnWindowResize(int width, int height)
 	// Treat window resize event
 }
 
-void Proiect::DrawOnGPU()
+void Proiect::RenderOnGPU()
 {
 	Shader* shader = shaders["Ray"];
 
@@ -144,33 +131,33 @@ void Proiect::DrawOnGPU()
 	glUniform1f(glGetUniformLocation(shader->program, "z_near"), GetSceneCamera()->GetProjectionInfo().zNear);
 	glUniform1f(glGetUniformLocation(shader->program, "z_far"), GetSceneCamera()->GetProjectionInfo().zFar);
 
-	glUniform3f(glGetUniformLocation(shader->program, "TRS_values"), translationValue, rotationValue, scalingValue);
 
-	vector<int> idxs;
+	vector<int> indexes;
 	switch (scene) {
 	case 1:
-		idxs = { 0, 2, 0, 2, 0, 1, 0, 1, 0, 1 };
+		indexes = { 0, 2, 0, 2, 0, 1, 0, 1, 0, 1 };
 		break;
 	case 2:
-		idxs = { 2, 5, 2, 14, 1, 4, 1, 3, 1, 4 };
+		indexes = { 2, 5, 2, 14, 1, 4, 1, 3, 1, 4 };
 		break;
 	case 3:
-		idxs = { 5, 8, 14, 24, 4, 8, 3, 5, 4, 5 };
+		indexes = { 5, 8, 14, 24, 4, 8, 3, 5, 4, 5 };
 		break;
 
-	default: break;
+	default: 
+		break;
 	}
 
-	glUniform1i(glGetUniformLocation(shader->program, "cube_start"), idxs[0]);
-	glUniform1i(glGetUniformLocation(shader->program, "cube_stop"), idxs[1]);
-	glUniform1i(glGetUniformLocation(shader->program, "sphere_start"), idxs[2]);
-	glUniform1i(glGetUniformLocation(shader->program, "sphere_stop"), idxs[3]);
-	glUniform1i(glGetUniformLocation(shader->program, "cylinder_start"), idxs[4]);
-	glUniform1i(glGetUniformLocation(shader->program, "cylinder_stop"), idxs[5]);
-	glUniform1i(glGetUniformLocation(shader->program, "cone_start"), idxs[6]);
-	glUniform1i(glGetUniformLocation(shader->program, "cone_stop"), idxs[7]);
-	glUniform1i(glGetUniformLocation(shader->program, "light_start"), idxs[8]);
-	glUniform1i(glGetUniformLocation(shader->program, "light_stop"), idxs[9]);
+	glUniform1i(glGetUniformLocation(shader->program, "cube_start"), indexes[0]);
+	glUniform1i(glGetUniformLocation(shader->program, "cube_stop"), indexes[1]);
+	glUniform1i(glGetUniformLocation(shader->program, "sphere_start"), indexes[2]);
+	glUniform1i(glGetUniformLocation(shader->program, "sphere_stop"), indexes[3]);
+	glUniform1i(glGetUniformLocation(shader->program, "cylinder_start"), indexes[4]);
+	glUniform1i(glGetUniformLocation(shader->program, "cylinder_stop"), indexes[5]);
+	glUniform1i(glGetUniformLocation(shader->program, "cone_start"), indexes[6]);
+	glUniform1i(glGetUniformLocation(shader->program, "cone_stop"), indexes[7]);
+	glUniform1i(glGetUniformLocation(shader->program, "light_start"), indexes[8]);
+	glUniform1i(glGetUniformLocation(shader->program, "light_stop"), indexes[9]);
 
 	meshes["quad"]->Render();
 }

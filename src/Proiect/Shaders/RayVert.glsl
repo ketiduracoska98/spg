@@ -26,7 +26,6 @@ const vec2 positions[6] = vec2[](
 
 void main()
 {
-
     vec2 pos = positions[gl_VertexID];
     eye_pos = (proj_view * vec4(pos, -1.0, 1.0) * z_near).xyz;
     ray_direction_from_vertex = (proj_view * (vec4(pos, 1.0, 1.0) * z_far - vec4(pos, -1.0, 1.0) * z_near)).xyz - eye_pos;
