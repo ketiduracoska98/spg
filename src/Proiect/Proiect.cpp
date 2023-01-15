@@ -29,14 +29,15 @@ Proiect::~Proiect()
 }
 
 FrameBuffer* processed;
-/*point3 lookfrom(13, 2, 3);
+point3 lookfrom(13, 2, 3);
 point3 lookat(0, 0, 0);
 vec3 vup(0, 1, 0);
 double dist_to_focus = 10.0;
 double aperture = 0.1;
 const double aspect_ratio = 16.0 / 9.0;
-camera_cpu cam(lookfrom, lookat, vup, 20, aspect_ratio, aperture, dist_to_focus);
 
+camera_cpu cam(lookfrom, lookat, vup, 20, aspect_ratio, aperture, dist_to_focus);
+/*
 const int image_width = 1200;
 const int image_height = static_cast<int>(image_width / aspect_ratio);
 const int samples_per_pixel = 10;
@@ -66,7 +67,7 @@ void Proiect::Update(float deltaTimeSeconds)
 
 {
 
-	/*for (int j = image_height - 1; j >= 0; --j) {
+	for (int j = image_height - 1; j >= 0; --j) {
 		for (int i = 0; i < image_width; ++i) {
 			color pixel_color(0, 0, 0);
 			for (int s = 0; s < samples_per_pixel; ++s) {
@@ -75,11 +76,11 @@ void Proiect::Update(float deltaTimeSeconds)
 				ray r = cam.get_ray(u, v);
 			//	pixel_color += ray_color(r, world, max_depth);
 			}
-			int offset = (j * imageSize.x + i);
-			write_color(&newData[offset], pixel_color, samples_per_pixel);
+		//	int offset = (j * imageSize.x + i);
+			write_color(buffer, pixel_color, samples_per_pixel);
 		}
-	}*/
-	Ray();
+	}
+	//Ray();
 	 
 
 }
