@@ -1,75 +1,142 @@
 #version 430
-
 layout(location = 0) in vec2 text_coord;
 layout(location = 1) in vec3 ray_direction_from_vertex;
 layout(location = 2) in vec3 eye_pos;
 
 const float REFR_IDX = 1.33f;
+
+
 const float DIST_MAX = 600.f;
+
 const float EPS = 0.006f;
 
+
+
 uniform int cube_start = -1;
+
 uniform int cube_stop = -1;
+
 uniform int sphere_start = -1;
+
 uniform int sphere_stop = -1;
+
 uniform int cylinder_start = -1;
+
 uniform int cylinder_stop = -1;
+
 uniform int cone_start = -1;
+
 uniform int cone_stop = -1;
+
 uniform int light_start = -1;
+
 uniform int light_stop = -1;
+
+
 
 layout(location = 0) out vec4 out_color;
 
-// Shadows toggle
+
+
+// Shadows  
+
 #define ENABLE_SHADOWS 1
 
-//Object material properties as bit flags
+
+
+//Object material properties  as bit flags
+
 #define DIFFUSE     1
+
 #define SPECULAR    2
+
 #define REFLECTIVE  4
+
 #define REFRACTIVE  8
 
+
+
 //Objects ID's
+
 #define OBJ_SPHERE_ID   0
+
 #define OBJ_BOX_ID      1
+
 #define OBJ_CONE_ID     2
+
 #define OBJ_CYLINDER_ID 3
 
+
+
 // How the light interacts with the objects' color
+
 struct ObjectMatProperties
+
 {
+
 	vec3 diffraction; // Can be used for color
+
 	vec3 specular;
+
 	vec3 reflection;
+
 };
+
+
 
 // Rectangle face definition
+
 struct Rectangle
+
 {
+
+
 	vec3 position;
+
 	float width;
+
 	float len;
+
 };
+
+
 
 // Triangle face definition
+
 struct Triangle
+
 {
+
 	vec3 v1;
+
 	vec3 v2;
+
 	vec3 v3;
+
 };
+
+
 
 // Simple Sphere definition
+
 struct Sphere
+
 {
+
 	vec3 position;
+
 	float radius;
+
 	int properties;
+
 	ObjectMatProperties lightprops;
+
 };
 
+
+
 // Simple Cube definition
+
 struct Box
 {
 	vec3 start;
@@ -118,7 +185,7 @@ struct Light
 Sphere spheres[] = Sphere[](
 	// Scene 1
 	Sphere(vec3(0, 25, -10), 10, REFLECTIVE | SPECULAR, ObjectMatProperties(vec3(0), vec3(0.95), vec3(0.2, 0.9, 0.95))),
-	Sphere(vec3(15, 25, 56), 2, REFRACTIVE | SPECULAR, ObjectMatProperties(vec3(0), vec3(0), vec3(1))),
+//	Sphere(vec3(15, 25, 56), 2, REFRACTIVE | SPECULAR, ObjectMatProperties(vec3(0), vec3(0), vec3(1))),
 
 	// Scene 2
 	Sphere(vec3(0, 25, -10), 10, REFLECTIVE | SPECULAR, ObjectMatProperties(vec3(0.0), vec3(0.95), vec3(0.2, 0.9, 0.95))),
@@ -149,8 +216,8 @@ Sphere spheres[] = Sphere[](
 
 Box boxes[] = Box[](
 	// Scene 1
-	Box(vec3(23, 9, 13), vec3(37, 23, 27), REFRACTIVE, ObjectMatProperties(vec3(0), vec3(0.95), vec3(0.9, 0.95, 0.94))),
-	Box(vec3(-70, 0, -70), vec3(120, 110, 120),  DIFFUSE, ObjectMatProperties(vec3(0.8), vec3(0.6), vec3(0.8))),
+//	Box(vec3(23, 9, 13), vec3(37, 23, 27), REFRACTIVE, ObjectMatProperties(vec3(0), vec3(0.95), vec3(0.9, 0.95, 0.94))),
+//	Box(vec3(-70, 0, -70), vec3(120, 110, 120),  DIFFUSE, ObjectMatProperties(vec3(0.8), vec3(0.6), vec3(0.8))),
 
 	// Scene 2
 	Box(vec3(43, 12, 13), vec3(57, 27, 27), REFLECTIVE, ObjectMatProperties(vec3(0), vec3(0.55), vec3(0.7, 0.75, 0.34))),
@@ -165,7 +232,7 @@ Box boxes[] = Box[](
 
 Cylinder cylinders[] = Cylinder[](
 	// Scene 1
-	Cylinder(vec3(10, 10, 15), 6, 7, DIFFUSE, ObjectMatProperties(vec3(0.2, 0.8, 0.2), vec3(0), vec3(0.6))),
+//	Cylinder(vec3(10, 10, 15), 6, 7, DIFFUSE, ObjectMatProperties(vec3(0.2, 0.8, 0.2), vec3(0), vec3(0.6))),
 
 	// Scene 2
 	Cylinder(vec3(50, 30, -25), 2, 12, REFLECTIVE | SPECULAR, ObjectMatProperties(vec3(0.5, 0.5, 0.2), vec3(1), vec3(0.6))),
@@ -180,7 +247,7 @@ Cylinder cylinders[] = Cylinder[](
 
 Cone cones[] = Cone[](
 	// Scene 1
-	Cone(vec3(100, 20, 15), 16, 16, DIFFUSE | SPECULAR, ObjectMatProperties(vec3(0.2, 0.2, 0.9), vec3(0), vec3(0.6))),
+//	Cone(vec3(100, 20, 15), 16, 16, DIFFUSE | SPECULAR, ObjectMatProperties(vec3(0.2, 0.2, 0.9), vec3(0), vec3(0.6))),
 
 	// Scene 2
 	Cone(vec3(108, 20, 15), 16, 16, DIFFUSE, ObjectMatProperties(vec3(0.2, 0.7, 0.3), vec3(0), vec3(0.6))),
@@ -543,4 +610,4 @@ void main()
 	}
 
 	out_color = vec4(color, 1);
-}#pragma once
+}

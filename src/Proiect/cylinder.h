@@ -1,4 +1,3 @@
-#pragma once
 #ifndef CYLINDER_H
 #define CYLINDER_H
 

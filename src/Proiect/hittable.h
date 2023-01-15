@@ -1,4 +1,3 @@
-#pragma once
 #ifndef HITTABLE_H
 #define HITTABLE_H
 #include "rtweekend.h"

@@ -1,4 +1,3 @@
-#pragma once
 #ifndef CAMERA_CPU_H
 #define CAMERA_CPU_H
 #include "rtweekend.h"

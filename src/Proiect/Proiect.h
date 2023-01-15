@@ -25,7 +25,7 @@ private:
     void OnMouseBtnRelease(int mouseX, int mouseY, int button, int mods) override;
     void OnMouseScroll(int mouseX, int mouseY, int offsetX, int offsetY) override;
     void OnWindowResize(int width, int height) override;
- 
+	void DrawOnGPU();
 	
 	
     void Ray();
@@ -37,7 +37,7 @@ private:
 	bool flip;
 	int outputMode;
 
-	int scene = -1;
+	int scene = 1;
 	float timeToOneSec = 0;
 	int frames = 0;
 	int framesPerSec = 0;
