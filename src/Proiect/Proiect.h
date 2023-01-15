@@ -1,6 +1,7 @@
 #pragma once
 #include "components/simple_scene.h"
-#include <core/gpu/frame_buffer.h>
+#include "hittable_list.h"
+
 
 using namespace std;
 
@@ -24,9 +25,33 @@ private:
     void OnMouseBtnRelease(int mouseX, int mouseY, int button, int mods) override;
     void OnMouseScroll(int mouseX, int mouseY, int offsetX, int offsetY) override;
     void OnWindowResize(int width, int height) override;
-
+ 
+	
+	
+    void Ray();
+    hittable_list w_scene();
 private:  
-    
-   
+	Texture2D* originalImage;
+	Texture2D* processedImage;
 
+	bool flip;
+	int outputMode;
+
+	int scene = -1;
+	float timeToOneSec = 0;
+	int frames = 0;
+	int framesPerSec = 0;
+	bool continuousPrint = false;
+	bool onGPU = true;
+	float rotationValue = 0;
+	float rotationDirection = 1;
+	float translationValue = 0;
+	float translationDirection = 1;
+	float scalingValue = 1;
+	float scalingDirection = 1;
+	float animationSpeed = 5;
+	float currTime = 0;
+
+	
+	
 };
